@@ -4,13 +4,13 @@ This is a simple web app written in Node.js with Express and Socket.io.
 
 ## Running This Demo Locally on Your Machine
 
-1. Install dependencies
+### 1. Install dependencies
 
 ```bash
 $ npm install
 ```
 
-2. Set up a config.js with Your Credentials
+### 2. Set up a config.js with Your Credentials
 
 Sign up at [Nexmo](https://nexmo.com) to get your own API keys and a virtual number.
 
@@ -24,12 +24,12 @@ module.exports = {
 };
 ```
 
-3. Run the Node App
+### 3. Run the Node App
 
 ```bash
 $ node server/send-sms.js
 ```
 
-4. Launch it on Browser
+### 4. Launch it on Browser
 
-Go to http://localhost:4000
+Go to [http://localhost:4000](http://localhost:4000) and send text messages. 
