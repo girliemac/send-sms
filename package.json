@@ -1,0 +1,18 @@
+{
+  "name": "nexmo-sms-demo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomomi ❤ Imura",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "nexmo": "^1.0.0-beta-7",
+    "socket.io": "^1.4.8"
+  }
+}

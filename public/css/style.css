@@ -1,0 +1,130 @@
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+html {
+  height: 100%;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  background: #148dcd;
+  background-size: cover;
+  color: #fff;
+}
+h1, h2, h3 {
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+footer {
+  max-width: 600px;
+  margin: auto;
+  text-align: right;
+}
+footer a {
+  color: #f7d51b;
+}
+header {
+  max-width: 600px;
+  margin: 2em auto 1em;
+  color: #fff;
+
+  display: -ms-flexbox;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+header h1 {
+  font-family: 'Alfa Slab One';
+  font-size: 2.4em;
+  font-weight: normal;
+}
+header .logo {
+  width: 120px;
+  display: block;
+}
+form {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: flex-end;
+}
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  border-radius: 6px;
+  color: #333;
+  font-size: 1.1em;
+  padding: .75em 1em;
+  margin-bottom: 1em;
+}
+input:not(:last-of-type) {
+  margin-right: 0.5em;
+}
+input[type=tel] {
+  width: 170px;
+}
+input[type=text] {
+  flex-grow: 1;
+}
+input[type=button] {
+  background: #e6e6e6;
+  text-shadow: 0 1px 0 #f3f3f3;
+}
+input[type=button]:active {
+  background: #bfbfbf;
+  position: relative;
+  top: 2px;
+  left: 1px;
+}
+#main {
+  max-width: 600px;
+  margin: 1em auto 2em;
+  padding: 1em 1.5em 1.5em;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 3px 7px 10px rgba(0, 0, 0, 0.5);
+}
+.intro {
+  position: relative;
+  padding: 0 0.75em;
+  background: #148dcd;
+  line-height: 46px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 2em;
+  box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.25);
+}
+.intro:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 50px;
+  top: 46px;
+  border: 10px solid;
+  border-color: #148dcd transparent transparent #148dcd;
+}
+.response {
+  color: #f7d51b;
+  font-style: italic;
+  visibility: hidden;
+  margin: -4px 0 0 0;
+  height: 16px;
+}
+section[section] {
+  display: none; /* for IE < 11 */
+}
+.poof {
+  animation: poof 15s ease-in 0s 1;
+}
+@keyframes poof {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
