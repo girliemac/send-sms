@@ -2,6 +2,8 @@
 
 This is a simple web app written in Node.js with Express and Socket.io.
 
+![screencast](public/images/nexmo-sms-notification-demo.gif)
+
 ## Running This Demo Locally on Your Machine
 
 ### 1. Install dependencies
@@ -32,4 +34,4 @@ $ node server/send-sms.js
 
 ### 4. Launch it on Browser
 
-Go to [http://localhost:4000](http://localhost:4000) and send text messages. 
+Go to [http://localhost:4000](http://localhost:4000) and send text messages.
