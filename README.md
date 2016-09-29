@@ -1,7 +1,7 @@
 # Sending SMS from Web
 
 This is a simple web app written in Node.js with Express.
-Additionally, I am using W3C desktop notifications API for the front-end UI to show the SMS receipt message with Socket.io.
+Additionally, I am using W3C Web Notifications API for the front-end UI to show the SMS receipt message with Socket.io.
 
 ![screencast](public/images/nexmo-sms-notification-demo.gif)
 
@@ -17,7 +17,7 @@ $ npm install
 
 Sign up at [Nexmo](https://nexmo.com) to get your own API keys and a virtual number.
 
-Create `config.js` in the root dir of the app. The file should include the credentials.
+Create `config.js` in `/server`. The file should include the credentials.
 
 ```javascript
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
 ### 3. Run the Node App
 
 ```bash
-$ node server/send-sms.js
+$ node server/index.js
 ```
 
 ### 4. Launch it on Browser

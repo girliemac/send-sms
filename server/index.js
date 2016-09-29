@@ -1,7 +1,6 @@
 'use strict';
 
 const config = require('./config');
-const https = require('https');
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');

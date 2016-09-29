@@ -8,13 +8,19 @@
   var msg = document.querySelector('.response');
 
   // Web Notification permission
-  var notification = 'denied';
-  Notification.requestPermission(function() {
+  var permission = 'denied';
+
+  try {
     Notification.requestPermission().then(function(status) {
-      notification = status;
-      console.log('Web notification status: '+ notification);
+      permission = status;
+      console.log('Web notification status: '+ permission);
     });
-  });
+  } catch (error) { // Safari 9 doesn't return a promise for requestPermissions
+    Notification.requestPermission(function(status) {
+      permission = status;
+      console.log('Web notification status: '+ permission);
+    });
+  }
 
   // socket.io
   var socket = io();
@@ -25,9 +31,9 @@
     console.log(data);
     if(!data.messages) return;
     if(data.messages[0]['error-text']){
-      displayStatus('Error: ' + data.messages[0]['error-text'], notification);
+      displayStatus('Error: ' + data.messages[0]['error-text'], permission);
     } else {
-      displayStatus('Message ID ' + data.messages[0]['message-id'] + ' successfully sent to ' + data.messages[0]['to'], notification);
+      displayStatus('Message ID ' + data.messages[0]['message-id'] + ' successfully sent to ' + data.messages[0]['to'], permission);
     }
   });
 
@@ -50,6 +56,12 @@
     var text = textField.value || 'Hello!';
 
     localStorage.setItem('number', number);
+
+    if(!self.fetch) {
+      alert("Bummer, your browser doesn't support Fetch API!");
+      return;
+      // Ideally, use XHR as the fallback for fetch.
+    }
 
     fetch('/', {
       method: 'post',
