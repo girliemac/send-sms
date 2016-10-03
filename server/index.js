@@ -4,8 +4,8 @@ const config = require('./config');
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
-const socketio = require('socket.io');
 const Nexmo = require('nexmo');
+const socketio = require('socket.io');
 
 const app = express();
 const server = app.listen(4000, () => {
@@ -14,18 +14,16 @@ const server = app.listen(4000, () => {
 
 // Nexmo init
 
-var nexmo = new Nexmo({
+const nexmo = new Nexmo({
   apiKey: config.api_key,
   apiSecret: config.api_secret,
-},{debug: true});
+}, {debug: true});
 
 // socket.io
 
 const io = socketio(server);
-let socket;
-io.on('connection', (s) => {
+io.on('connection', (socket) => {
   console.log('Connected');
-  socket = s;
   socket.on('disconnect', () => {
     console.log('Disconnected');
   });
@@ -47,25 +45,33 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  console.log(req.body);
   res.send(req.body);
-//return;
+
   let toNumber = req.body.number;
   let text = req.body.text;
+
+  let data = {}; // the data to be emitted to front-end
+
   // Sending SMS via Nexmo
   nexmo.message.sendSms(
     config.number, toNumber, text, {type: 'unicode'},
     (err, responseData) => {
       if (err) {
-        console.log(err);
+        data = {error: err};
       } else {
-        console.dir(responseData);
-        socket.emit('responseData', responseData);
+        //console.dir(responseData);
+        if(responseData.messages[0]['error-text']) {
+          data = {error: responseData.messages[0]['error-text']};
+        } else {
+          let n = responseData.messages[0]['to'].substr(0, responseData.messages[0]['to'].length - 4) + '****';
+          data = {id: responseData.messages[0]['message-id'], number: n};
+        }
+        io.emit('smsStatus', data);
       }
     }
   );
 
-  // Basic Number Insight
+  // Basic Number Insight - get info about the phone number
   nexmo.numberInsight.get({level:'basic', number: toNumber}, (err, responseData) => {
     if (err) console.log(err);
     else {

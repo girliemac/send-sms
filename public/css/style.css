@@ -108,9 +108,8 @@ input[type=button]:active {
 .response {
   color: #f7d51b;
   font-style: italic;
-  visibility: hidden;
-  margin: -4px 0 0 0;
-  height: 16px;
+  max-width: 600px;
+  margin: 1em auto 2em;
 }
 section[section] {
   display: none; /* for IE < 11 */
@@ -121,10 +120,8 @@ section[section] {
 @keyframes poof {
   from {
     opacity: 1;
-    visibility: visible;
   }
   to {
     opacity: 0;
-    visibility: hidden;
   }
 }

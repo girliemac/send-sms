@@ -27,13 +27,13 @@
   socket.on('connect', function() {
     console.log('Socket connected');
   });
-  socket.on('responseData', function(data) {
+  socket.on('smsStatus', function(data) {
     console.log(data);
-    if(!data.messages) return;
-    if(data.messages[0]['error-text']){
-      displayStatus('Error: ' + data.messages[0]['error-text'], permission);
+    if(!data) return;
+    if(data.error){
+      displayStatus('Error: ' + data.error, permission);
     } else {
-      displayStatus('Message ID ' + data.messages[0]['message-id'] + ' successfully sent to ' + data.messages[0]['to'], permission);
+      displayStatus('Message ID ' + data.id + ' successfully sent to ' + data.number, permission);
     }
   });
 
@@ -86,17 +86,13 @@
     console.log(notification);
 
     if(notification === 'granted') { // web notification
-      var ms = 30000; // close notification after 30sec
-        var notification = new Notification('Nexmo', {
-          body: message,
-          icon: 'images/icon-nexmo.png'
-        });
-        notification.onshow = function() {
-            setTimeout(notification.close, ms);
-        };
-    } else { // just show text
+      var notification = new Notification('Nexmo', {
+        body: message,
+        icon: 'images/icon-nexmo.png'
+      });
+    } else { // Notification is denied by a user. just show text
       msg.classList.add('poof');
-      msg.textContent = m;
+      msg.textContent = message;
       msg.addEventListener('animationend', function(){
         msg.textContent = '';
         msg.classList.remove('poof');
