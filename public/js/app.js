@@ -55,8 +55,10 @@
 
     var text = textField.value || 'Hello!';
 
+    //optional - storing the input value so the user doesn't have to type it each time
     localStorage.setItem('number', number);
 
+    // Fetch feature detection
     if(!self.fetch) {
       alert("Bummer, your browser doesn't support Fetch API!");
       return;

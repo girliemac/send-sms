@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('./config');
+const config = require('./config'); // storing the API credentials
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
@@ -67,6 +67,7 @@ app.post('/', (req, res) => {
           data = {id: responseData.messages[0]['message-id'], number: n};
         }
         io.emit('smsStatus', data);
+        console.dir(responseData.messages[0]);
       }
     }
   );
